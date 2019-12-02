@@ -2,7 +2,8 @@
 public class Crypto {
     public static void main (String[] args){
         normalizeText("This is some \"really\" great. (Text)!?");
-        caesarify("xyz XYZ", -1);
+        caesarify("xyz XYZ", 2);
+        groupify("aaaaaa", 3);
     }
 
 
@@ -70,4 +71,30 @@ public class Crypto {
         }
         return result;
     }
-}
+
+
+    public static String groupify(String str, int interval) {
+        if (interval > 0) {
+            StringBuilder res = new StringBuilder();
+            char[] charArrayOfStr = str.toCharArray();
+            for (int x = 0; x < charArrayOfStr.length; x++) {
+                if (x % interval == 0 && x != 0) {
+                    res.append(" ").append(charArrayOfStr[x]);
+                } else {
+                    res.append(charArrayOfStr[x]);
+                }
+
+                if (x % interval == 0 && x == (charArrayOfStr.length - 1)) {
+                    res.append("X");
+                }
+            }
+
+            System.out.println(res.toString());
+
+        } else {
+            System.out.println("interval must be greater than zero");
+        }
+        return str.toString();
+    }
+
+    }
