@@ -1,10 +1,10 @@
+import javax.print.DocFlavor;
 
 public class Crypto {
     public static void main (String[] args){
-        normalizeText("This is some \"really\" great. (Text)!?");
-        caesarify("xyz XYZ", 2);
-        groupify("aaaaaa", 3);
-        encryptString("xyzXYZa", 1, 2);
+
+    String cypherText = encryptString("hello george", 1, 2);
+    String plainText = decryptString(cypherText, 1);
     }
 
 
@@ -19,7 +19,7 @@ public class Crypto {
         // 3. Turn all lower-case letters into upper-case letters
         res = res.toUpperCase();
         // 4. Return the result.
-        System.out.println(res);
+        System.out.println("normalized: "+res);
         return res;
     }
     public static String caesarify(String str, int key){
@@ -50,7 +50,7 @@ public class Crypto {
 
 
         }
-        System.out.println(res);
+        System.out.println("cyphered "+res);
         return res;
     }
     public static String shiftAlphabet(int shift) {
@@ -86,11 +86,11 @@ public class Crypto {
                 }
 
                 if (x % interval == 0 && x == (charArrayOfStr.length - 1)) {
-                    res.append("X");
+                    res.append("x");
                 }
             }
 
-            System.out.println(res.toString());
+            System.out.println("grouped: "+ res.toString());
 
         } else {
             System.out.println("interval must be greater than zero");
@@ -102,7 +102,48 @@ public class Crypto {
         String res = normalizeText(str);
         res = caesarify(res, key);
         res = groupify(res, groupSize);
+
         return res;
     }
 
+    public static String decryptString(String str, int key) {
+        String unGrouped = str;
+
+        unGrouped = str.replace(" ", "");
+
+        // unCaesar
+        // key to doing negative keys
+        String res = "";
+        for(int x = 0; x < unGrouped.length(); x++){
+
+            if(key > 0){
+                char c =' ';
+                int k = key % 26;
+                for(int y = 0; y < k; y++){
+                    if(Character.isUpperCase(unGrouped.charAt(x))) {
+                        if (unGrouped.charAt(x) == 'a') {
+                            c = 'z';
+                        } else if (unGrouped.charAt(x) == 'A') {
+                            c = 'Z';
+                        } else
+                            c = (char) ((int) unGrouped.charAt(x) - 1);
+                    }
+                }
+                res+= c;
+            } else {
+                    res = "no method for negative keys, try positive key";
+            }
+
+
+
+
+
+        }
+
+        System.out.println("decrypted: "+ res);
+        // unCaesar
+        return  res;
     }
+
+
+}
