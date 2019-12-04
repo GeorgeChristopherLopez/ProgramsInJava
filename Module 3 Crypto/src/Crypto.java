@@ -4,6 +4,7 @@ public class Crypto {
         normalizeText("This is some \"really\" great. (Text)!?");
         caesarify("xyz XYZ", 2);
         groupify("aaaaaa", 3);
+        encryptString("xyzXYZa", 1, 2);
     }
 
 
@@ -95,6 +96,13 @@ public class Crypto {
             System.out.println("interval must be greater than zero");
         }
         return str.toString();
+    }
+
+    public static String encryptString(String str, int key, int groupSize){
+        String res = normalizeText(str);
+        res = caesarify(res, key);
+        res = groupify(res, groupSize);
+        return res;
     }
 
     }
