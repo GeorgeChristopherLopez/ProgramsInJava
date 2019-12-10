@@ -103,8 +103,8 @@ public class Maze {
     }
 
     private boolean canMove(int rowMove, int colMove) {
-        if (col + colMove > 20 || col + colMove < 0 ||
-                row + rowMove > 20 || row + rowMove < 0) {
+        if ((col + colMove) > 20 || (col + colMove) < 0 ||
+                (row + rowMove) > 20 || (row + rowMove) < 0) {
             return false;
         }
         else if (solution[row + rowMove][col + colMove] == '*') {
