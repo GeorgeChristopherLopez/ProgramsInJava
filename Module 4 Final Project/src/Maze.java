@@ -295,7 +295,8 @@ public class Maze {
         solution[6][4] = '0';
         solution[15][4] = '0';
         solution[9][10] = '0';
-        solution[13][17] = '0';
+        // bug >:(
+        // solution[13][17] = '0';
         solution[13][15] = '0';
         solution[18][10] = '0';
     }
@@ -306,6 +307,8 @@ public class Maze {
      */
     public boolean didIWin() {
         if (row == 10 && col == 19) {
+
+
             return true;
         } else {
             return false;
