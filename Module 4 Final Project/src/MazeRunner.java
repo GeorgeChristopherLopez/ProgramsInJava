@@ -5,8 +5,8 @@ public class MazeRunner {
        public static void main (String[] args){
         Maze myMap = new Maze();
         greeting(myMap);
-        myMap = moveOffer(myMap);
-        System.out.println("Congratulations, you made it out alive");
+        moveOffer(myMap);
+
     }
 
     public static void greeting(Maze myMap){
@@ -15,7 +15,7 @@ public class MazeRunner {
         myMap.printMap();
     }
 
-    public static Maze moveOffer(Maze myMap){
+    public static void moveOffer(Maze myMap){
         int moves = 0;
         Scanner input = new Scanner(System.in);
 
@@ -75,7 +75,12 @@ public class MazeRunner {
             movesMessage(moves);
         }
             myMap.printMap();
-            return myMap;
+            congrats(moves);
+    }
+
+    public static void congrats(int moves){
+        System.out.println("Congratulations, you made it out alive");
+        System.out.println("and you did it in "+moves+" moves.");
     }
     public static void movesMessage (int moves){
         if(moves == 50){
